@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="Dashboard/CHURN_ANALYSIS_project-dashboard.pdf">📊 Dashboard PDF</a> •
+  <a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf">📊 Dashboard PDF</a> •
   <a href="Business_Report/Customer_Churn_Project_Report.pdf">📘 Business Report</a> •
   <a href="#key-insights">💡 Key Insights</a> •
   <a href="#technical-implementation">⚙️ Technical Build</a> •
@@ -38,8 +38,8 @@
 
 <table>
   <tr>
-    <td width="50%"><a href="Dashboard/CHURN_ANALYSIS_project-dashboard.pdf"><img src="Img/summary-dashboard.png" alt="Customer churn summary dashboard"></a></td>
-    <td width="50%"><a href="Dashboard/CHURN_ANALYSIS_project-dashboard.pdf"><img src="Img/prediction-dashboard.png" alt="Customer churn prediction dashboard"></a></td>
+    <td width="50%"><a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><img src="Img/summary-dashboard.png" alt="Customer churn summary dashboard"></a></td>
+    <td width="50%"><a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><img src="Img/prediction-dashboard.png" alt="Customer churn prediction dashboard"></a></td>
   </tr>
   <tr>
     <td align="center"><strong>Executive Summary</strong><br><sub>KPIs, churn segments, reasons and service patterns</sub></td>
@@ -47,7 +47,7 @@
   </tr>
 </table>
 
-<p align="center"><a href="Dashboard/CHURN_ANALYSIS_project-dashboard.pdf"><strong>Open the complete two-page dashboard PDF →</strong></a></p>
+<p align="center"><a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><strong>Open the complete two-page dashboard PDF →</strong></a></p>
 
 > [!NOTE]
 > The public repository presents the completed dashboard through screenshots and a PDF export. The interactive PBIX file and source datasets are not distributed.
@@ -226,7 +226,7 @@ customer-churn-retention-analytics/
 
 | Resource | Description | Link |
 |---|---|---|
-| **Dashboard PDF** | Static export of the Summary and Prediction dashboard pages | [Open PDF](Dashboard/CHURN_ANALYSIS_project-dashboard.pdf) |
+| **Dashboard PDF** | Static export of the Summary and Prediction dashboard pages | [Open PDF](Dashboard/CHURN_ANALYSIS_projectdashboard.pdf) |
 | **Business report** | Management findings, KPI definitions, data architecture, SQL and CSV workflows, calculations, limitations and refresh guidance | [Open report](Business_Report/Customer_Churn_Project_Report.pdf) |
 
 ---
