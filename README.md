@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Img/customer-churn-hero.svg" alt="Customer Churn and Retention Intelligence" width="100%">
+  <img src="Img/customer_churn_banner.png" alt="Customer Churn and Retention Intelligence" width="100%">
 </p>
 
 <p align="center">
@@ -49,9 +49,6 @@
 
 <p align="center"><a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><strong>Open the complete two-page dashboard PDF →</strong></a></p>
 
-> [!NOTE]
-> The public repository presents the completed dashboard through screenshots and a PDF export. The interactive PBIX file and source datasets are not distributed.
-
 ## 🧭 Executive Snapshot
 
 Customer churn affects the size and stability of the active customer base. This project organizes customer, contract, service and churn-reason data into a two-page Power BI dashboard designed to answer three practical questions:
@@ -96,11 +93,11 @@ The Prediction page contains **381 records**: 247 female and 134 male customers.
 
 | Priority | Recommended action | Management purpose |
 |---|---|---|
-| **1 — Contract retention** | Analyze month-to-month churn by service, tenure and recorded reason before choosing an intervention. | Focus investigation on the largest churn concentration. |
-| **2 — Competitive review** | Review competitor-related churn records alongside available service and customer characteristics. | Identify recurring themes that may require a commercial or experience response. |
-| **3 — Service investigation** | Examine the fiber-optic customer journey and compare it with other internet types. | Understand the descriptive churn gap before acting. |
-| **4 — Measurement** | Define a baseline, target group and observation period for any retention test. | Separate measured outcomes from assumptions. |
-| **5 — Prediction governance** | Document the scoring method, scoring date, forecast horizon and evaluation results before automated use. | Ensure the imported prediction list is applied responsibly. |
+| **1. Contract retention** | Analyze month-to-month churn by service, tenure and recorded reason before choosing an intervention. | Focus investigation on the largest churn concentration. |
+| **2. Competitive review** | Review competitor-related churn records alongside available service and customer characteristics. | Identify recurring themes that may require a commercial or experience response. |
+| **3. Service investigation** | Examine the fiber-optic customer journey and compare it with other internet types. | Understand the descriptive churn gap before acting. |
+| **4. Measurement** | Define a baseline, target group and observation period for any retention test. | Separate measured outcomes from assumptions. |
+| **5. Prediction governance** | Document the scoring method, scoring date, forecast horizon and evaluation results before automated use. | Ensure the imported prediction list is applied responsibly. |
 
 ## 🧠 Analytical Approach
 
