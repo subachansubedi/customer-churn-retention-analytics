@@ -1,240 +1,530 @@
+
 <p align="center">
   <img src="Img/customer_churn_banner.png" alt="Customer Churn and Retention Intelligence" width="100%">
 </p>
 
 <p align="center">
-  <strong>A business intelligence case study that turns customer behavior, service usage and churn records into focused retention decisions.</strong>
+  <strong>End-to-end customer churn analytics using SQL, Power BI, Power Query, DAX, and Python to identify churn patterns, generate retention insights, and score newly joined customers with a Random Forest model.</strong>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Power_BI-Executive_Dashboard-F2C811?style=flat-square&logo=powerbi&logoColor=111827" alt="Power BI">
-  <img src="https://img.shields.io/badge/SQL_Server-Data_Preparation-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white" alt="SQL Server">
-  <img src="https://img.shields.io/badge/Power_Query-ETL-0D9488?style=flat-square" alt="Power Query">
+  <img src="https://img.shields.io/badge/Power_BI-Dashboard-F2C811?style=flat-square&logo=powerbi&logoColor=111827" alt="Power BI">
+  <img src="https://img.shields.io/badge/SQL_Server-ETL-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white" alt="SQL Server">
+  <img src="https://img.shields.io/badge/PostgreSQL-ETL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/Python-Random_Forest-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Power_Query-Data_Preparation-0D9488?style=flat-square" alt="Power Query">
   <img src="https://img.shields.io/badge/DAX-KPI_Modeling-1E3A8A?style=flat-square" alt="DAX">
-  <img src="https://img.shields.io/badge/Status-Completed-16A34A?style=flat-square" alt="Completed">
 </p>
 
 <p align="center">
   <a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf">📊 Dashboard PDF</a> •
   <a href="Business_Report/Customer_Churn_Project_Report.pdf">📘 Business Report</a> •
-  <a href="#key-insights">💡 Key Insights</a> •
-  <a href="#technical-implementation">⚙️ Technical Build</a> •
-  <a href="#business-recommendations">🎯 Recommendations</a>
+  <a href="Python/Churn_Prediction_Random_Forest.ipynb">🤖 Python Model</a> •
+  <a href="#-key-insights">💡 Key Insights</a>
 </p>
 
 ---
 
-<table>
-  <tr>
-    <td align="center" width="20%"><strong>👥 6,418</strong><br><sub>Customer Records</sub></td>
-    <td align="center" width="20%"><strong>🚪 1,732</strong><br><sub>Churned Customers</sub></td>
-    <td align="center" width="20%"><strong>📉 27.0%</strong><br><sub>Overall Churn Rate</sub></td>
-    <td align="center" width="20%"><strong>✨ 411</strong><br><sub>New Joiners</sub></td>
-    <td align="center" width="20%"><strong>🔎 381</strong><br><sub>Prediction Records</sub></td>
-  </tr>
-</table>
+| 👥 Customer Records | 🚪 Churned Customers | 📉 Churn Rate | ✨ New Joiners | 🔎 Prediction Records |
+|---:|---:|---:|---:|---:|
+| **6,418** | **1,732** | **27.0%** | **411** | **381** |
 
 ## 📊 Dashboard Experience
 
-<table>
-  <tr>
-    <td width="50%"><a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><img src="Img/summary-dashboard.png" alt="Customer churn summary dashboard"></a></td>
-    <td width="50%"><a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><img src="Img/prediction-dashboard.png" alt="Customer churn prediction dashboard"></a></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Executive Summary</strong><br><sub>KPIs, churn segments, reasons and service patterns</sub></td>
-    <td align="center"><strong>Prediction Review</strong><br><sub>Flagged-customer segments, filters and record detail</sub></td>
-  </tr>
-</table>
+| Executive Summary | Prediction Review |
+|---|---|
+| ![Customer Churn Summary Dashboard](Img/summary-dashboard.png) | ![Customer Churn Prediction Dashboard](Img/prediction-dashboard.png) |
+| KPIs, churn segments, reasons, contracts, services, and customer behavior | Flagged customers, demographic segments, filters, and customer-level details |
 
-<p align="center"><a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><strong>Open the complete two-page dashboard PDF →</strong></a></p>
+<p align="center">
+  <a href="Dashboard/CHURN_ANALYSIS_projectdashboard.pdf"><strong>Open the complete two-page Power BI dashboard →</strong></a>
+</p>
 
-## 🧭 Executive Snapshot
+---
 
-Customer churn affects the size and stability of the active customer base. This project organizes customer, contract, service and churn-reason data into a two-page Power BI dashboard designed to answer three practical questions:
+## 🧭 Project Overview
 
-1. Where is recorded churn concentrated?
-2. Which customer segments should be investigated first?
-3. Which imported prediction records require customer-level review?
+This project analyzes customer churn across **contract type, demographics, tenure, payment methods, internet services, service usage, and recorded churn reasons**.
 
-The analysis identifies contract structure, recorded competitor-related reasons and fiber-optic service as important areas for further retention investigation. Findings are descriptive and should be interpreted together with the limitations documented below and in the full [business report](Business_Report/Customer_Churn_Project_Report.pdf).
+The end-to-end analytics workflow combines:
 
-<a id="key-insights"></a>
+**Data Cleaning → SQL / Power Query → Data Modeling → DAX → Power BI → Churn Analysis → Random Forest → Prediction Review**
+
+The source dataset contains:
+
+- **4,275 Stayed customers**
+- **1,732 Churned customers**
+- **411 Joined customers**
+
+Historical **Stayed + Churned** customers are used for churn analysis and model training, while **Joined** customers are scored for potential churn.
+
+The project combines descriptive analytics, dashboard development, SQL-based data preparation, and machine learning to support customer-retention analysis.
+
+---
 
 ## 💡 Key Insights
 
-### 📄 Month-to-month contracts define the clearest retention priority
+### 📄 Month-to-Month Contracts Show the Highest Churn
 
-Month-to-month customers have a **46.5% churn rate**, compared with **11.0%** for one-year contracts and **2.7%** for two-year contracts. This segment contains **1,529 of 1,732 churned customers**, representing **88.3% of all recorded churn**.
+Month-to-month customers show the strongest churn concentration, with a **46.5% churn rate**, compared with **11.0%** for one-year contracts and **2.7%** for two-year contracts.
 
-| Contract | Customers | Churned | Churn rate |
+| Contract | Customers | Churned | Churn Rate |
 |---|---:|---:|---:|
 | **Month-to-Month** | 3,286 | 1,529 | **46.5%** |
 | One Year | 1,413 | 156 | 11.0% |
 | Two Year | 1,719 | 47 | 2.7% |
 
-<p align="center"><img src="Img/contract-churn-rate.png" alt="Churn rate by contract" width="760"></p>
+**1,529 of 1,732 churned customers — 88.3% — are on month-to-month contracts.**
 
-### 🏁 Recorded reasons point to competitive pressure
+<p align="center">
+  <img src="Img/contract-churn-rate.png" alt="Churn Rate by Contract" width="750">
+</p>
 
-**Competitor** is the largest recorded churn category with **761 customers**, accounting for **43.9% of churned customers**. Attitude accounts for 301 records, dissatisfaction for 300, price for 196 and other reasons for 174.
+---
 
-### 🌐 Fiber-optic service warrants deeper investigation
+### 🏁 Competitor-Related Reasons Lead Recorded Churn
 
-Fiber Optic has a **41.1% descriptive churn rate**, compared with **25.7%** for Cable and **19.4%** for DSL. Contract type, tenure and other customer characteristics may overlap with internet type, so this pattern should not be interpreted as causal.
+**Competitor** is the largest recorded churn category with **761 customers**, representing **43.9% of churned customers**.
 
-### 🔎 The imported prediction list is highly concentrated
+| Churn Category | Churned Customers | Share of Churn |
+|---|---:|---:|
+| **Competitor** | **761** | **43.9%** |
+| Attitude | 301 | 17.4% |
+| Dissatisfaction | 300 | 17.3% |
+| Price | 196 | 11.3% |
+| Other | 174 | 10.0% |
 
-The Prediction page contains **381 records**: 247 female and 134 male customers. **355 records, or 93.2%, are month-to-month customers.** The dashboard provides customer search, contract filtering and customer-level fields to support review.
+<p align="center">
+  <img src="Img/churn-reasons.png" alt="Customer Churn Reasons" width="750">
+</p>
 
-<a id="business-recommendations"></a>
+This suggests that competitive positioning, pricing, service experience, and customer satisfaction are important areas for deeper retention analysis.
+
+---
+
+### 🌐 Fiber-Optic Customers Require Further Investigation
+
+Fiber Optic customers show the highest descriptive churn rate.
+
+| Internet Type | Churn Rate |
+|---|---:|
+| **Fiber Optic** | **41.1%** |
+| Cable | 25.7% |
+| DSL | 19.4% |
+| Blank / No Internet Type | 7.8% |
+
+<p align="center">
+  <img src="Img/internet-rate.png" alt="Churn Rate by Internet Type" width="750">
+</p>
+
+These rates describe associations in the dataset. Internet type should be analyzed together with contract type, tenure, customer demographics, pricing, and service mix before drawing business conclusions.
+
+---
+
+### 👥 Customer Demographics Add Additional Context
+
+The dashboard shows that recorded churn is distributed:
+
+- **64.1% Female**
+- **35.9% Male**
+
+Churn rates by age group are:
+
+| Age Group | Churn Rate |
+|---|---:|
+| Under 20 | 23.1% |
+| 20–35 | 23.5% |
+| 35–50 | 24.0% |
+| **Over 50** | **31.0%** |
+
+The **over-50 customer segment** has the highest displayed churn rate among the age groups.
+
+---
+
+### 🧩 Service Usage Highlights Retention Opportunities
+
+The service matrix evaluates the composition of services among churned customers.
+
+Notable patterns include:
+
+- **83.6%** of churned customers did not have Online Security.
+- **82.4%** did not have Premium Support.
+- **70.0%** did not have Online Backup.
+- **69.1%** did not have a Device Protection Plan.
+- **74.6%** used Paperless Billing.
+- **85.5%** had Unlimited Data.
+
+These patterns help identify customer-service combinations that may warrant deeper investigation.
+
+---
+
+### 🔎 Prediction Output Supports Targeted Customer Review
+
+The prediction dataset contains **381 customer records flagged for churn review**.
+
+Key characteristics include:
+
+- **355 month-to-month customers — 93.2%**
+- **247 female customers**
+- **134 male customers**
+- Age, tenure, payment method, contract, state, charges, revenue, refunds, and referral information
+
+| Contract | Prediction Records | Share |
+|---|---:|---:|
+| **Month-to-Month** | **355** | **93.2%** |
+| One Year | 17 | 4.5% |
+| Two Year | 9 | 2.4% |
+
+<p align="center">
+  <img src="Img/prediction-contract.png" alt="Prediction Records by Contract" width="750">
+</p>
+
+The Power BI prediction page supports:
+
+- Customer ID search
+- Risk-status filtering
+- Contract filtering
+- Age analysis
+- Tenure analysis
+- Payment-method analysis
+- State analysis
+- Customer-level financial and referral review
+
+---
+
+## 🤖 Random Forest Churn Prediction
+
+The Python component extends the descriptive BI analysis with a machine-learning workflow using:
+
+**Python · pandas · NumPy · scikit-learn · Matplotlib · Seaborn · joblib**
+
+### Workflow
+
+1. Load `Dataset/Customer_Data.csv`.
+2. Separate historical **Stayed / Churned** customers from **Joined** customers.
+3. Remove customer ID and churn-reason fields from model features.
+4. Encode categorical variables using `LabelEncoder`.
+5. Encode the target variable:
+   - `Stayed = 0`
+   - `Churned = 1`
+6. Split historical data into **80% training / 20% testing**.
+7. Train a Random Forest classifier.
+8. Generate test-set predictions.
+9. Evaluate model performance using:
+   - Confusion Matrix
+   - Classification Report
+   - Precision
+   - Recall
+   - F1 Score
+10. Calculate and visualize feature importance.
+11. Score newly joined customers.
+12. Export customers predicted to churn to `Dataset/Predictions.csv`.
+
+### Random Forest Configuration
+
+```python
+RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
+```
+
+### Model Features
+
+Categorical variables encoded for model training include:
+
+- Gender
+- Married
+- State
+- Value Deal
+- Phone Service
+- Multiple Lines
+- Internet Service
+- Internet Type
+- Online Security
+- Online Backup
+- Device Protection Plan
+- Premium Support
+- Streaming TV
+- Streaming Movies
+- Streaming Music
+- Unlimited Data
+- Contract
+- Paperless Billing
+- Payment Method
+
+The model also uses available numerical customer, tenure, billing, service, and revenue-related fields.
+
+### Prediction Workflow
+
+Historical customers are used for model development:
+
+```text
+Stayed + Churned
+        ↓
+Data Preparation
+        ↓
+Train / Test Split
+        ↓
+Random Forest
+        ↓
+Model Evaluation
+        ↓
+Feature Importance
+```
+
+Newly joined customers are then scored:
+
+```text
+Joined Customers
+       ↓
+Same Data Preparation
+       ↓
+Random Forest Model
+       ↓
+Predicted Churn Status
+       ↓
+Dataset/Predictions.csv
+       ↓
+Power BI Prediction Dashboard
+```
+
+---
+
+## ⚙️ SQL & Data Preparation
+
+The project demonstrates three different data-preparation approaches.
+
+| Approach | Purpose |
+|---|---|
+| **SQL Server** | Staging, validation, cleaning, production table creation, and analytical views |
+| **PostgreSQL** | Equivalent ETL and validation workflow using PostgreSQL syntax |
+| **Power Query** | Direct CSV ingestion and transformation for Power BI |
+
+### SQL Workflow
+
+Both SQL implementations include:
+
+- Raw-data staging
+- Row-count validation
+- Data exploration
+- Missing-value analysis
+- Data cleaning
+- Categorical-value standardization
+- Production-table creation
+- Historical churn/stay views
+- Joined-customer views
+- Final data-quality validation
+
+The workflows separate customers into:
+
+- **Historical customers** — Stayed + Churned
+- **New customers** — Joined
+
+This structure supports both descriptive churn analysis and predictive modeling.
+
+---
+
+## 🧹 Data Cleaning & Transformation
+
+Key transformations include:
+
+- Data-type validation
+- Missing-value handling
+- Duplicate review
+- Customer-status segmentation
+- Age grouping
+- Tenure grouping
+- Charge-range grouping
+- Service-column transformation
+- Categorical-value standardization
+- Analytical view creation
+- Service unpivoting for Power BI analysis
+
+The cleaned data is then used across SQL, Power BI, and Python to maintain a consistent analytical workflow.
+
+---
+
+## 📈 Power BI & DAX
+
+The Power BI solution combines:
+
+- Cleaned customer data
+- Prediction records
+- Service-level analysis
+- Age-group mappings
+- Tenure-group mappings
+- DAX measures
+- Interactive filtering
+
+### Summary Dashboard
+
+The Summary page includes:
+
+- Total Customers
+- New Joiners
+- Total Churn
+- Churn Rate
+- Churn by Gender
+- Churn by Age Group
+- Churn by Contract
+- Churn by Tenure
+- Churn by State
+- Churn by Payment Method
+- Churn by Internet Type
+- Churn Category analysis
+- Service-level analysis
+- Interactive slicers
+
+### Prediction Dashboard
+
+The Prediction page includes:
+
+- Total prediction records
+- Prediction records by Gender
+- Prediction records by Age Group
+- Prediction records by Tenure
+- Prediction records by Contract
+- Prediction records by State
+- Prediction records by Payment Method
+- Customer search
+- Risk-status filtering
+- Contract filtering
+- Customer-level detail table
+
+Customer-level fields include:
+
+- Customer ID
+- Monthly Charge
+- Total Revenue
+- Total Refunds
+- Number of Referrals
+
+---
 
 ## 🎯 Business Recommendations
 
-| Priority | Recommended action | Management purpose |
-|---|---|---|
-| **1. Contract retention** | Analyze month-to-month churn by service, tenure and recorded reason before choosing an intervention. | Focus investigation on the largest churn concentration. |
-| **2. Competitive review** | Review competitor-related churn records alongside available service and customer characteristics. | Identify recurring themes that may require a commercial or experience response. |
-| **3. Service investigation** | Examine the fiber-optic customer journey and compare it with other internet types. | Understand the descriptive churn gap before acting. |
-| **4. Measurement** | Define a baseline, target group and observation period for any retention test. | Separate measured outcomes from assumptions. |
-| **5. Prediction governance** | Document the scoring method, scoring date, forecast horizon and evaluation results before automated use. | Ensure the imported prediction list is applied responsibly. |
+### 1. Prioritize Month-to-Month Customers
 
-## 🧠 Analytical Approach
+Month-to-month customers account for the largest concentration of recorded churn.
 
-The project combines business analysis, data preparation, semantic modeling and dashboard design:
+Retention analysis should focus on this segment across:
 
-```mermaid
-flowchart LR
-    A["📄 Customer Data"] --> B["⚙️ SQL or Power Query"]
-    C["📄 Prediction Data"] --> B
-    B --> D["🧠 Power BI Model"]
-    D --> E["📊 Summary"]
-    D --> F["🔎 Prediction Review"]
-```
+- Tenure
+- Service usage
+- Internet type
+- Customer age
+- Payment method
+- Churn reason
 
-| Model object | Purpose | Verified detail |
-|---|---|---|
-| `prod_Churn` | Main customer analysis | 6,418 rows with unique customer IDs |
-| `Predictions` | Imported prediction records | 381 rows with unique customer IDs |
-| `prod_Services` | Unpivoted service analysis | 77,016 rows from 12 service indicators |
-| `mapping_AgeGrp` | Age grouping and sorting | Active relationship to the customer table |
-| `mapping_TenureGrp` | Tenure grouping and sorting | Active relationship to the customer table |
-| `tbl_Measures` | Central DAX measure table | Six measures |
+### 2. Investigate Competitive Churn
 
-The model includes measures for total customers, new joiners, total churn, churn rate and prediction counts. The relationship between `Predictions` and `prod_Churn` is active, one-to-one and bidirectional through `Customer_ID`.
+Competitor-related reasons represent the largest churn category.
 
-<a id="technical-implementation"></a>
+Further analysis should evaluate whether these customers share common:
 
-## ⚙️ Technical Implementation
+- Contract types
+- Services
+- Pricing characteristics
+- Tenure levels
+- Customer-experience patterns
 
-The reporting objective can be implemented through either SQL Server or direct CSV ingestion with Power Query.
+### 3. Analyze Fiber-Optic Customer Experience
 
-<details>
-<summary><strong>🗄️ SQL Server implementation route</strong></summary>
+Fiber Optic customers have the highest descriptive churn rate.
 
-<br>
+Their customer journey should be analyzed alongside:
 
-1. Import the customer CSV into a staging table named `stg_Churn`.
-2. Validate distributions, expected values, data types and missing values.
-3. Create the cleaned `prod_Churn` table and apply documented missing-value defaults.
-4. Create `vw_ChurnData` for Churned and Stayed customers.
-5. Create `vw_JoinData` for Joined customers.
-6. Connect Power BI to the SQL Server views and configure refresh.
+- Monthly charges
+- Contract type
+- Tenure
+- Premium Support
+- Online Security
+- Other service combinations
 
-</details>
+### 4. Use Prediction Results for Retention Prioritization
 
-<details>
-<summary><strong>📄 CSV and Power Query implementation route</strong></summary>
+The prediction workflow can support targeted customer review by identifying newly joined customers with patterns similar to historically churned customers.
 
-<br>
+Prediction output should be combined with business context before retention actions are taken.
 
-1. Connect Power BI directly to the customer and prediction CSV files.
-2. Promote headers and assign the required column data types.
-3. Standardize missing values using the same business rules as the SQL workflow.
-4. Create the age, tenure and service transformations in Power Query.
-5. Load the prepared analytical tables into the Power BI model.
-6. Refresh from the configured local or managed file locations.
+### 5. Measure Retention Outcomes
 
-</details>
+Retention initiatives should include:
 
-The documented solution demonstrates both routes. Detailed transformation logic, model relationships, calculations and refresh steps are available in the [project report](Business_Report/Customer_Churn_Project_Report.pdf).
+- Defined target segments
+- Baseline churn measurements
+- Intervention dates
+- Observation periods
+- Retention KPIs
 
-## 🖥️ Dashboard Capabilities
+This allows future analysis to measure whether retention strategies actually improve customer outcomes.
 
-- Executive KPI cards for customer volume and recorded churn
-- Contract, age, tenure, gender, payment, internet-type and churn-reason analysis
-- Service composition matrix with in-cell data bars
-- Married and charge-range slicers on the Summary page
-- Customer search, risk-status and contract filters on the Prediction page
-- Detail table containing charges, revenue, refunds and referrals
-- Page navigation between Summary and Prediction views
-
-## 💼 Project Value
-
-This project demonstrates the ability to:
-
-- Translate a customer-retention problem into measurable analytical questions
-- Prepare data through both SQL Server and Power Query
-- Build reusable DAX measures and business groupings
-- Design an executive-level Power BI dashboard
-- Turn dashboard findings into practical management recommendations
-- Interpret descriptive patterns without overstating causation
-- Document a BI solution for both management and technical audiences
-
-## ⚠️ Interpretation and Limitations
-
-- The overall churn rate uses all 6,418 customer records as its denominator, including 411 new joiners.
-- The service matrix describes the Yes and No composition of churned customers; it does not measure churn probability among all service users.
-- The prediction list is imported. The supplied project materials do not include training code, probabilities, a forecast horizon or model-evaluation results.
-- Revenue fields exist, but the project does not establish currency, profit, campaign return or revenue saved.
-- The findings describe associations in the imported records and do not establish causation.
+---
 
 ## 📁 Repository Structure
 
 ```text
 customer-churn-retention-analytics/
+│
 ├── README.md
-├── Python/
-│   ├── README_Random_Forest.md
-│   └── Churn_Prediction_Random_Forest.ipynb
+│
+├── Business_Report/
+│   └── Customer_Churn_Project_Report.pdf
+│
+├── Dashboard/
+│   └── CHURN_ANALYSIS_projectdashboard.pdf
+│
 ├── Dataset/
 │   ├── Customer_Data.csv
 │   └── Predictions.csv
+│
+├── Img/
+│   ├── customer_churn_banner.png
+│   ├── churn-reasons.png
+│   ├── contract-churn-rate.png
+│   ├── internet-rate.png
+│   ├── prediction-contract.png
+│   ├── prediction-dashboard.png
+│   └── summary-dashboard.png
+│
+├── Python/
+│   ├── Churn_Prediction_Random_Forest.ipynb
+│   └── README_Random_Forest.md
+│
 ├── Sql/
 │   ├── Customer_Churn_PostgreSQL.sql
 │   ├── Customer_Churn_SQL_Server.sql
 │   └── README_SQL_Data_Loading.md
-├── Dashboard/
-│   └── CHURN_ANALYSIS_projectdashboard.pdf
-├── Business_Report/
-│   └── Customer_Churn_Project_Report.pdf
-└── Img/
-    ├── churn-reasons.png
-    ├── contract-churn-rate.png
-    ├── customer-churn-hero.svg
-    ├── internet-rate.png
-    ├── prediction-contract.png
-    ├── prediction-dashboard.png
-    ├── solution-flow.png
-    └── summary-dashboard.png
+│
+└── docs/
 ```
+
+---
 
 ## 📚 Project Documentation
 
 | Resource | Description | Link |
 |---|---|---|
-| **Dashboard PDF** | Static export of the Summary and Prediction dashboard pages | [Open PDF](Dashboard/CHURN_ANALYSIS_projectdashboard.pdf) |
-| **Business report** | Management findings, KPI definitions, data architecture, SQL and CSV workflows, calculations, limitations and refresh guidance | [Open report](Business_Report/Customer_Churn_Project_Report.pdf) |
+| **Power BI Dashboard** | Two-page customer churn and prediction dashboard | [Open Dashboard](Dashboard/CHURN_ANALYSIS_projectdashboard.pdf) |
+| **Business Report** | Business findings, KPI definitions, workflow, and recommendations | [Open Report](Business_Report/Customer_Churn_Project_Report.pdf) |
+| **Random Forest Notebook** | Python preprocessing, model training, evaluation, feature importance, and prediction workflow | [Open Notebook](Python/Churn_Prediction_Random_Forest.ipynb) |
+| **Python Guide** | Documentation for the Python churn-prediction workflow | [Open Guide](Python/README_Random_Forest.md) |
+| **SQL Server Script** | SQL Server ETL, cleaning, validation, and analytical views | [Open SQL](Sql/Customer_Churn_SQL_Server.sql) |
+| **PostgreSQL Script** | PostgreSQL ETL, cleaning, validation, and analytical views | [Open SQL](Sql/Customer_Churn_PostgreSQL.sql) |
+| **SQL Data Loading Guide** | SQL Server, PostgreSQL, and Power Query workflow documentation | [Open Guide](Sql/README_SQL_Data_Loading.md) |
+| **Customer Dataset** | Customer-level source dataset | [Open CSV](Dataset/Customer_Data.csv) |
+| **Prediction Output** | Customers flagged by the prediction workflow | [Open CSV](Dataset/Predictions.csv) |
 
----
 
-<div align="center">
+<p align="center">
+  <strong>Customer Churn &amp; Retention Intelligence</strong>
+</p>
 
-### Customer Churn & Retention Intelligence
+<p align="center">
+  <sub>Power BI · SQL Server · PostgreSQL · Python · Machine Learning · Power Query · DAX · Business Analytics</sub>
+</p>
 
-**Designed and developed by Subachan Subedi**
-
-<sub>Power BI · SQL Server · Power Query · DAX · Business Intelligence</sub>
-
-</div>
-
+<p align="center">
+  <strong>Subachan Subedi</strong>
+</p>
